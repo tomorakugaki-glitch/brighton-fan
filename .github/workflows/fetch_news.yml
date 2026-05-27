@@ -1,0 +1,67 @@
+name: Fetch Brighton News
+
+on:
+  schedule:
+    # 毎朝 21:00 UTC = 翌朝 06:00 JST
+    - cron: "0 21 * * *"
+  workflow_dispatch:  # 手動実行も可能
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install requests feedparser python-dotenv
+
+      - name: Fetch news
+        env:
+          GUARDIAN_API_KEY: ${{ secrets.GUARDIAN_API_KEY }}
+          DEEPL_API_KEY: ${{ secrets.DEEPL_API_KEY }}
+        run: python scripts/fetch_news.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/
+          if git diff --staged --quiet; then
+            echo "変更なし — コミットスキップ"
+          else
+            git commit -m "chore: update news $(date +'%Y-%m-%d %H:%M JST' --date='TZ=\"Asia/Tokyo\" now')"
+            git push
+          fi
+
+  notify-on-failure:
+    needs: fetch
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Create failure issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date().toLocaleDateString('ja-JP', {timeZone: 'Asia/Tokyo'});
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[自動通知] ニュース収集に失敗しました (${today})`,
+              body: `## ニュース収集が失敗しました\n\n**実行日時**: ${today}\n**ワークフロー**: [ログを確認](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n\n### よくある原因\n- APIキー（GUARDIAN_API_KEY / DEEPL_API_KEY）の期限切れ\n- 外部APIの一時障害\n- Python依存パッケージの問題\n\n### 対処\n1. GitHub Secrets のAPIキーを確認\n2. 上記ログリンクでエラー内容を確認\n3. Actions > Run workflow から手動再実行`,
+              labels: ['bug', 'automated'],
+            });
