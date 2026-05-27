@@ -1,0 +1,18 @@
+# APIキー・環境変数（絶対にpushしない）
+.env
+.env.local
+# .env.example はpushしてOK（実際のキーは書かない）
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ログ
+*.log
