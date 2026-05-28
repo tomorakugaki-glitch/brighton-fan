@@ -10,6 +10,7 @@ Brighton Fan Intelligence — ニュース自動収集スクリプト
 出力: docs/data/news.json
 """
 
+import html as htmllib
 import json
 import os
 import re
@@ -44,8 +45,12 @@ MAX_RSS      = 10
 JST = timezone(timedelta(hours=9))
 
 # Guardian 検索クエリ
-BRIGHTON_QUERY    = 'Brighton AND (Gross OR "van Hecke" OR Wieffer OR "De Cuyper" OR Kadıoğlu OR Gómez OR Ayari OR "World Cup")'
-WORLDCUP_QUERY    = '"Pascal Gross" OR "Jan Paul van Hecke" OR "Mats Wieffer" OR "Maxim De Cuyper" OR "Ferdi Kadıoğlu"'
+BRIGHTON_QUERY = 'Brighton AND (Gross OR "van Hecke" OR Wieffer OR "De Cuyper" OR Kadıoğlu OR Gómez OR Ayari OR "Conference League")'
+WORLDCUP_QUERY = '"Pascal Gross" OR "Jan Paul van Hecke" OR "Mats Wieffer" OR "Maxim De Cuyper" OR "Ferdi Kadıoğlu"'
+
+# W杯開催期間（この期間中は WORLDCUP_QUERY も実行）
+WORLDCUP_START = datetime(2026, 6, 11, tzinfo=timezone.utc)
+WORLDCUP_END   = datetime(2026, 7, 20, tzinfo=timezone.utc)
 
 # カテゴリ推定キーワード（英語）
 CATEGORY_RULES = [
@@ -75,12 +80,24 @@ def apply_glossary(text: str, glossary: dict) -> str:
     return text
 
 
+def clean_html(text: str) -> str:
+    """HTMLタグを除去し、エンティティをデコード"""
+    text = re.sub(r"<[^>]+>", "", text or "")
+    return htmllib.unescape(text).strip()
+
+
 def guess_category(title_en: str, url: str = "") -> str:
     lower = (title_en + " " + url).lower()
     for cat, keywords in CATEGORY_RULES:
         if any(kw in lower for kw in keywords):
             return cat
     return "クラブ"
+
+
+def is_worldcup_period() -> bool:
+    """現在がFIFA W杯2026の開催期間（2026-06-11〜2026-07-19）か"""
+    now = datetime.now(timezone.utc)
+    return WORLDCUP_START <= now < WORLDCUP_END
 
 
 def translate_deepl(texts: list[str]) -> list[str]:
@@ -105,13 +122,27 @@ def translate_deepl(texts: list[str]) -> list[str]:
         return texts
 
 
+def load_previous_urls() -> set:
+    """前回の news.json から取得済みURLのセットを返す（is_new 判定用）"""
+    try:
+        prev = json.loads(OUTPUT_PATH.read_text(encoding="utf-8"))
+        return {a.get("url", "") for a in prev.get("articles", [])}
+    except Exception:
+        return set()
+
+
 def fetch_guardian() -> list[dict]:
     if not GUARDIAN_API_KEY:
         print("  [Guardian] APIキー未設定 — スキップ", file=sys.stderr)
         return []
 
+    queries = [BRIGHTON_QUERY]
+    if is_worldcup_period():
+        queries.append(WORLDCUP_QUERY)
+        print("  [Guardian] W杯期間中 — W杯選手クエリも実行")
+
     articles = []
-    for query in [BRIGHTON_QUERY, WORLDCUP_QUERY]:
+    for query in queries:
         try:
             params = {
                 "q": query,
@@ -124,10 +155,12 @@ def fetch_guardian() -> list[dict]:
             resp.raise_for_status()
             results = resp.json().get("response", {}).get("results", [])
             for item in results:
+                fields = item.get("fields", {})
                 articles.append({
                     "source": "The Guardian",
                     "trust": "★★★★☆",
                     "title_en": item.get("webTitle", ""),
+                    "summary_en": clean_html(fields.get("trailText", "")),
                     "url": item.get("webUrl", ""),
                     "published": item.get("webPublicationDate", "")[:10],
                 })
@@ -157,10 +190,13 @@ def fetch_rss(url: str, source: str, trust: str) -> list[dict]:
             published = ""
             if hasattr(entry, "published_parsed") and entry.published_parsed:
                 published = time.strftime("%Y-%m-%d", entry.published_parsed)
+            # RSSのdescription/summaryを要約ベースとして取得
+            raw_summary = clean_html(entry.get("summary", "") or entry.get("description", ""))
             articles.append({
                 "source": source,
                 "trust": trust,
                 "title_en": title,
+                "summary_en": raw_summary[:400] if raw_summary else "",
                 "url": entry.get("link", ""),
                 "published": published,
             })
@@ -170,16 +206,24 @@ def fetch_rss(url: str, source: str, trust: str) -> list[dict]:
         return []
 
 
-def add_translations(articles: list[dict], glossary: dict) -> list[dict]:
-    """タイトルをDeepLで翻訳 → 用語集で固有名詞を統一"""
-    titles_en = [a["title_en"] for a in articles]
-    titles_ja = translate_deepl(titles_en)
+def add_translations(articles: list[dict], glossary: dict, prev_urls: set) -> list[dict]:
+    """タイトルと要約をDeepLで翻訳 → 用語集で固有名詞を統一"""
+    n = len(articles)
+    titles_en   = [a["title_en"] for a in articles]
+    summaries_en = [a.get("summary_en", "") for a in articles]
 
-    for article, title_ja in zip(articles, titles_ja):
-        article["title_ja"] = apply_glossary(title_ja, glossary)
-        article["category"] = guess_category(article["title_en"], article.get("url", ""))
-        article["summary_ja"] = ""  # Phase 2b で本文要約を追加予定
-        article["is_new"] = True
+    # タイトルと要約をまとめて1回のAPIコールで翻訳
+    all_ja = translate_deepl(titles_en + summaries_en)
+
+    # 翻訳結果数が足りない場合は原文をフォールバック
+    while len(all_ja) < 2 * n:
+        all_ja.append((titles_en + summaries_en)[len(all_ja)])
+
+    for i, article in enumerate(articles):
+        article["title_ja"]   = apply_glossary(all_ja[i], glossary)
+        article["summary_ja"] = apply_glossary(all_ja[n + i], glossary).strip()
+        article["category"]   = guess_category(article["title_en"], article.get("url", ""))
+        article["is_new"]     = article.get("url", "") not in prev_urls
 
     return articles
 
@@ -197,8 +241,13 @@ def save_output(articles: list[dict]) -> None:
     now_jst = datetime.now(JST).strftime("%Y-%m-%d %H:%M")
     date_str = datetime.now(JST).strftime("%Y%m%d")
 
+    clean_articles = []
     for idx, article in enumerate(articles):
-        article.setdefault("id", build_article_id(article, idx))
+        a = dict(article)
+        a.setdefault("id", build_article_id(a, idx))
+        a.pop("summary_en", None)  # 内部処理用フィールドは出力しない
+        clean_articles.append(a)
+    articles = clean_articles
 
     payload = {
         "updated_at": now_jst,
@@ -217,7 +266,8 @@ def save_output(articles: list[dict]) -> None:
 
 def main():
     print("=== Brighton Fan Intelligence — ニュース収集開始 ===")
-    glossary = load_glossary()
+    glossary  = load_glossary()
+    prev_urls = load_previous_urls()
 
     print("[1] Guardian API 取得中…")
     guardian_articles = fetch_guardian()
@@ -236,13 +286,14 @@ def main():
     # 公開日降順ソート
     all_articles.sort(key=lambda a: a.get("published", ""), reverse=True)
 
-    print(f"[4] DeepL 翻訳中… ({len(all_articles)}件)")
-    all_articles = add_translations(all_articles, glossary)
+    print(f"[4] DeepL 翻訳中… ({len(all_articles)}件, タイトル+要約)")
+    all_articles = add_translations(all_articles, glossary, prev_urls)
 
     print("[5] 保存中…")
     save_output(all_articles)
 
-    print(f"=== 完了: {len(all_articles)}件 ===")
+    new_count = sum(1 for a in all_articles if a.get("is_new"))
+    print(f"=== 完了: {len(all_articles)}件（うち新着 {new_count}件）===")
 
 
 if __name__ == "__main__":
