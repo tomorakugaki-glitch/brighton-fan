@@ -149,7 +149,7 @@ def fetch_guardian() -> list[dict]:
                 "api-key": GUARDIAN_API_KEY,
                 "page-size": MAX_GUARDIAN,
                 "order-by": "newest",
-                "show-fields": "headline,trailText",
+                "show-fields": "headline,trailText,thumbnail",
             }
             resp = requests.get(GUARDIAN_URL, params=params, timeout=15)
             resp.raise_for_status()
@@ -162,6 +162,7 @@ def fetch_guardian() -> list[dict]:
                     "title_en": item.get("webTitle", ""),
                     "summary_en": clean_html(fields.get("trailText", "")),
                     "url": item.get("webUrl", ""),
+                    "image_url": fields.get("thumbnail") or None,
                     "published": item.get("webPublicationDate", "")[:10],
                 })
         except Exception as e:
@@ -192,12 +193,22 @@ def fetch_rss(url: str, source: str, trust: str) -> list[dict]:
                 published = time.strftime("%Y-%m-%d", entry.published_parsed)
             # RSSのdescription/summaryを要約ベースとして取得
             raw_summary = clean_html(entry.get("summary", "") or entry.get("description", ""))
+            # media:thumbnail / media:content から画像URLを取得
+            image_url = None
+            media_thumbnail = entry.get("media_thumbnail") or entry.get("media_content")
+            if media_thumbnail and isinstance(media_thumbnail, list) and media_thumbnail:
+                image_url = media_thumbnail[0].get("url")
+            elif hasattr(entry, "enclosures") and entry.enclosures:
+                enc = entry.enclosures[0]
+                if enc.get("type", "").startswith("image/"):
+                    image_url = enc.get("url")
             articles.append({
                 "source": source,
                 "trust": trust,
                 "title_en": title,
                 "summary_en": raw_summary[:400] if raw_summary else "",
                 "url": entry.get("link", ""),
+                "image_url": image_url or None,
                 "published": published,
             })
         return articles
