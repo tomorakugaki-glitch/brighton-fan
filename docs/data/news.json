@@ -1,20 +1,6 @@
 {
-  "updated_at": "2026-10-11 09:03",
+  "updated_at": "2026-10-12 09:08",
   "is_demo": false,
-  "article_count": 1,
-  "articles": [
-    {
-      "source": "BBC Sport",
-      "trust": "★★★★☆",
-      "title_en": "Struijk sees red but Brighton march on with win against Sunderland",
-      "url": "https://www.bbc.co.uk/sport/football/videos/c6n8m3k7egd9o?at_medium=RSS&at_campaign=rss",
-      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7188/live/7394f370-c4cc-11f1-9a39-31b474234113.jpg",
-      "published": "2026-10-10",
-      "title_ja": "Struijk sees red but ブライトン march on with win against Sunderland",
-      "summary_ja": "ブライトン maintained their excellent start to the new Premier League season, as they beat Sunderland 2-0 at the Stadium of Light, despite having to play much of the second half with ten men, after Pascal Struijk was shown a controversial red card.",
-      "category": "試合",
-      "is_new": true,
-      "id": "2026-10-10-c6n8m3k7egd9o-at-medium-rss-at-campaign-"
-    }
-  ]
+  "article_count": 0,
+  "articles": []
 }
