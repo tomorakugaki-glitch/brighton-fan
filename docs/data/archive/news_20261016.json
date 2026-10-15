@@ -1,0 +1,33 @@
+{
+  "updated_at": "2026-10-16 08:30",
+  "is_demo": false,
+  "article_count": 2,
+  "articles": [
+    {
+      "source": "Sky Sports",
+      "trust": "★★★★☆",
+      "title_en": "Rutter scores twice as Brighton win big and go top in Conference League",
+      "url": "https://www.skysports.com/football/brighton-and-hove-albion-vs-kauno-zalgiris/report/577887",
+      "image_url": "https://e1.365dm.com/26/10/1920x1080/skysports-rutter-brighton-zalgris_7377878.jpg?20261015211251",
+      "published": "2026-10-15",
+      "title_ja": "Rutter scores twice as ブライトン win big and go top in Conference League",
+      "summary_ja": "Georginio Rutter scored twice and set up one as ブライトン thrashed Kauno Zalgris 4-0 to get their Conference League campaign off to a winning start.",
+      "category": "試合",
+      "is_new": true,
+      "id": "2026-10-15-577887"
+    },
+    {
+      "source": "Sky Sports",
+      "trust": "★★★★☆",
+      "title_en": "Brighton latest: Hinshelwood thrilled with goal in first game since August",
+      "url": "https://www.skysports.com/football/live-blog/12040/13279295/brighton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
+      "image_url": "https://e1.365dm.com/26/08/1920x1080/skysports-brighton-club-blog_7326693.jpg?20260820165121",
+      "published": "2026-10-15",
+      "title_ja": "ブライトン latest: Hinshelwood thrilled with goal in first game since August",
+      "summary_ja": "",
+      "category": "移籍",
+      "is_new": true,
+      "id": "2026-10-15-brighton-transfers-latest-news-rumours-a"
+    }
+  ]
+}
