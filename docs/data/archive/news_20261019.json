@@ -1,0 +1,59 @@
+{
+  "updated_at": "2026-10-19 07:42",
+  "is_demo": false,
+  "article_count": 4,
+  "articles": [
+    {
+      "source": "BBC Sport",
+      "trust": "★★★★☆",
+      "title_en": "Gomez scores extraordinary goal as Brighton put five past Palace",
+      "url": "https://www.bbc.co.uk/sport/football/videos/ckm23z2qem45o?at_medium=RSS&at_campaign=rss",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3561/live/e873db00-cb13-11f1-a64c-550be9e3c66b.jpg",
+      "published": "2026-10-18",
+      "title_ja": "ゴメス scores extraordinary goal as ブライトン put five past Palace",
+      "summary_ja": "Diego ゴメス scores a sensational goal from the halfway line as ブライトン hammer rivals Crystal Palace.",
+      "category": "試合",
+      "is_new": true,
+      "id": "2026-10-18-ckm23z2qem45o-at-medium-rss-at-campaign-"
+    },
+    {
+      "source": "BBC Sport",
+      "trust": "★★★★☆",
+      "title_en": "Shades of Barca and Beckham - Brighton aim to maintain superb start",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cmwyd05wj00do?at_medium=RSS&at_campaign=rss",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0d46/live/f82b45d0-cb25-11f1-a64c-550be9e3c66b.jpg",
+      "published": "2026-10-18",
+      "title_ja": "Shades of Barca and Beckham - ブライトン aim to maintain superb start",
+      "summary_ja": "With 23 goals in seven Premier League matches, including some stunning strikes, ブライトン continue to delight their fans and get them dreaming of what might be.",
+      "category": "クラブ",
+      "is_new": true,
+      "id": "2026-10-18-cmwyd05wj00do-at-medium-rss-at-campaign-"
+    },
+    {
+      "source": "Sky Sports",
+      "trust": "★★★★☆",
+      "title_en": "Brighton latest: Gomez? Rooney? Beckham? Vote on PL's best goal from halfway",
+      "url": "https://www.skysports.com/football/live-blog/12040/13279295/brighton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
+      "image_url": "https://e1.365dm.com/26/08/1920x1080/skysports-brighton-club-blog_7326693.jpg?20260820165121",
+      "published": "2026-10-18",
+      "title_ja": "ブライトン latest: ゴメス? Rooney? Beckham? Vote on PL's best goal from halfway",
+      "summary_ja": "",
+      "category": "移籍",
+      "is_new": true,
+      "id": "2026-10-18-brighton-transfers-latest-news-rumours-a"
+    },
+    {
+      "source": "Sky Sports",
+      "trust": "★★★★☆",
+      "title_en": "'A goal Brighton fans will never forget!' | Gomez goal from ALL ANGLES",
+      "url": "https://www.skysports.com/watch/video/13600762/a-goal-brighton-fans-will-never-forget-diego-gomez-goal-from-all-angles",
+      "image_url": "https://e1.365dm.com/26/10/1920x1080/skysports-diego-gomez_7380223.jpg?20261018200251",
+      "published": "2026-10-18",
+      "title_ja": "'A goal ブライトン fans will never forget!' | ゴメス goal from ALL ANGLES",
+      "summary_ja": "Diego ゴメス with an 'absolute piece of fotballing magic!' - enjoy it again and again from all angles!",
+      "category": "クラブ",
+      "is_new": true,
+      "id": "2026-10-18-a-goal-brighton-fans-will-never-forget-d"
+    }
+  ]
+}
