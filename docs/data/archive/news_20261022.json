@@ -1,0 +1,46 @@
+{
+  "updated_at": "2026-10-22 08:52",
+  "is_demo": false,
+  "article_count": 3,
+  "articles": [
+    {
+      "source": "BBC Sport",
+      "trust": "★★★★☆",
+      "title_en": "Chelsea eye Brighton's Ayari - Thursday's gossip",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cme3xk2jkyv0o?at_medium=RSS&at_campaign=rss",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/33f3/live/c1bcdb00-cd85-11f1-9a39-31b474234113.png",
+      "published": "2026-10-21",
+      "title_ja": "Chelsea eye ブライトン's アヤリ - Thursday's gossip",
+      "summary_ja": "ブライトン midfielder ヤシン・アヤリ is being targeted by Chelsea, Barcelona and Real Madrid are keeping an eye on Aston Villa's Johan Manzambi and Arsenal striker Viktor Gyokeres could be on moved on.",
+      "category": "クラブ",
+      "is_new": true,
+      "id": "2026-10-21-cme3xk2jkyv0o-at-medium-rss-at-campaign-"
+    },
+    {
+      "source": "Sky Sports",
+      "trust": "★★★★☆",
+      "title_en": "Papers: Brighton boss Hurzeler would be Shearer's pick to replace Carrick",
+      "url": "https://www.skysports.com/football/news/12040/13602091/manchester-united-should-appoint-fabio-hurzeler-if-they-replace-michel-carrick-says-former-premier-league-winner-alan-shearer-paper-talk",
+      "image_url": "https://e2.365dm.com/26/08/1920x1080/skysports-paper-talk-football_7317647.jpg?20260809160824",
+      "published": "2026-10-21",
+      "title_ja": "Papers: ブライトン boss Hurzeler would be Shearer's pick to replace Carrick",
+      "summary_ja": "The top stories and transfer rumours from Wednesday's newspapers...",
+      "category": "試合",
+      "is_new": true,
+      "id": "2026-10-21-manchester-united-should-appoint-fabio-h"
+    },
+    {
+      "source": "Sky Sports",
+      "trust": "★★★★☆",
+      "title_en": "Brighton latest: Hurzeler will not let in-form Seagulls underestimate Jablonec",
+      "url": "https://www.skysports.com/football/live-blog/12040/13279295/brighton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
+      "image_url": "https://e1.365dm.com/26/08/1920x1080/skysports-brighton-club-blog_7326693.jpg?20260820165121",
+      "published": "2026-10-21",
+      "title_ja": "ブライトン latest: Hurzeler will not let in-form Seagulls underestimate Jablonec",
+      "summary_ja": "",
+      "category": "移籍",
+      "is_new": true,
+      "id": "2026-10-21-brighton-transfers-latest-news-rumours-a"
+    }
+  ]
+}
