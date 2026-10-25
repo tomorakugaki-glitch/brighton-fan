@@ -1,6 +1,20 @@
 {
-  "updated_at": "2026-10-25 07:49",
+  "updated_at": "2026-10-26 07:59",
   "is_demo": false,
-  "article_count": 0,
-  "articles": []
+  "article_count": 1,
+  "articles": [
+    {
+      "source": "BBC Sport",
+      "trust": "★★★★☆",
+      "title_en": "Liverpool earn first league win at Anfield with victory over Brighton",
+      "url": "https://www.bbc.co.uk/sport/football/videos/cm3vq1vpv6zno?at_medium=RSS&at_campaign=rss",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1edf/live/33674a90-d0a3-11f1-93e1-3b657b665bcf.jpg",
+      "published": "2026-10-25",
+      "title_ja": "Liverpool earn first league win at Anfield with victory over ブライトン",
+      "summary_ja": "An own goal from ブライトン's パスカル・グロス swiftly followed by a goal from Alexander Isak, sees Liverpool beat the Seagulls 2-0 at Anfield to move into the Premier League top four.",
+      "category": "試合",
+      "is_new": true,
+      "id": "2026-10-25-cm3vq1vpv6zno-at-medium-rss-at-campaign-"
+    }
+  ]
 }
