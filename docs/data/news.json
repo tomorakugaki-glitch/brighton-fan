@@ -1,20 +1,6 @@
 {
-  "updated_at": "2026-11-06 10:19",
+  "updated_at": "2026-11-07 09:34",
   "is_demo": false,
-  "article_count": 1,
-  "articles": [
-    {
-      "source": "Sky Sports",
-      "trust": "★★★★☆",
-      "title_en": "Yalcouye header secures narrow win for Brighton at Getafe",
-      "url": "https://www.skysports.com/football/getafe-vs-brighton-and-hove-albion/report/577924",
-      "image_url": "https://e2.365dm.com/26/11/1920x1080/skysports-brighton-malick-yalcouye_7398604.jpg?20261105220124",
-      "published": "2026-11-05",
-      "title_ja": "Yalcouye header secures narrow win for ブライトン at Getafe",
-      "summary_ja": "Malick Yalcouye's second-half header secured a narrow 1-0 win for ブライトン at Getafe as Fabian Hurzeler's side moved into the top eight of the Conference League.",
-      "category": "試合",
-      "is_new": true,
-      "id": "2026-11-05-577924"
-    }
-  ]
+  "article_count": 0,
+  "articles": []
 }
