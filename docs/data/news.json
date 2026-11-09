@@ -1,6 +1,33 @@
 {
-  "updated_at": "2026-11-08 09:08",
+  "updated_at": "2026-11-09 09:25",
   "is_demo": false,
-  "article_count": 0,
-  "articles": []
+  "article_count": 2,
+  "articles": [
+    {
+      "source": "BBC Sport",
+      "trust": "★★★★☆",
+      "title_en": "Brighton breeze past 10-man Brentford to move up to second",
+      "url": "https://www.bbc.co.uk/sport/football/videos/cry836l4q56po?at_medium=RSS&at_campaign=rss",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8967/live/b01c8b60-dbaa-11f1-a701-fddedf244c16.jpg",
+      "published": "2026-11-08",
+      "title_ja": "ブライトン breeze past 10-man Brentford to move up to second",
+      "summary_ja": "Diego ゴメス's long-range strike fires ブライトン to a 2-0 over Brentford, who saw Igor Thiago be shown a straight red card, as Fabian Hurzeler's side move up to second in the Premier League.",
+      "category": "クラブ",
+      "is_new": true,
+      "id": "2026-11-08-cry836l4q56po-at-medium-rss-at-campaign-"
+    },
+    {
+      "source": "BBC Sport",
+      "trust": "★★★★☆",
+      "title_en": "Are 'outstanding' Brighton now Arsenal's main title challengers?",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cjx23rwxdn64o?at_medium=RSS&at_campaign=rss",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8de0/live/2f31e2f0-db93-11f1-9029-d35c55297624.jpg",
+      "published": "2026-11-08",
+      "title_ja": "Are 'outstanding' ブライトン now Arsenal's main title challengers?",
+      "summary_ja": "After moving up to second in the Premier League, could ブライトン really be Arsenal's main title challengers?",
+      "category": "クラブ",
+      "is_new": true,
+      "id": "2026-11-08-cjx23rwxdn64o-at-medium-rss-at-campaign-"
+    }
+  ]
 }
