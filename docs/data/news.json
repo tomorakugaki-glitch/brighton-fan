@@ -1,33 +1,6 @@
 {
-  "updated_at": "2026-11-23 10:20",
+  "updated_at": "2026-11-24 14:06",
   "is_demo": false,
-  "article_count": 2,
-  "articles": [
-    {
-      "source": "BBC Sport",
-      "trust": "★★★★☆",
-      "title_en": "From conceding seven to Hull heroics - how Tzolakis recovered to defy Brighton",
-      "url": "https://www.bbc.co.uk/sport/football/articles/cm4gn7npqe8yo?at_medium=RSS&at_campaign=rss",
-      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d1b0/live/8817d730-e697-11f1-99b6-a35a62fa4264.jpg",
-      "published": "2026-11-22",
-      "title_ja": "From conceding seven to Hull heroics - how Tzolakis recovered to defy ブライトン",
-      "summary_ja": "Nine days after playing for Greece in a nightmare 7-0 loss, keeper Konstantinos Tzolakis plays a pivotal role in Hull's Premier League win against ブライトン.",
-      "category": "クラブ",
-      "is_new": true,
-      "id": "2026-11-22-cm4gn7npqe8yo-at-medium-rss-at-campaign-"
-    },
-    {
-      "source": "BBC Sport",
-      "trust": "★★★★☆",
-      "title_en": "McBurnie stoppage-time double earns Hull win over 10-man Brighton",
-      "url": "https://www.bbc.co.uk/sport/football/videos/ck62pzzezqz2o?at_medium=RSS&at_campaign=rss",
-      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/29c3/live/e536fa10-e69f-11f1-a094-5fdc692f3e33.jpg",
-      "published": "2026-11-22",
-      "title_ja": "McBurnie stoppage-time double earns Hull win over 10-man ブライトン",
-      "summary_ja": "Oli McBurnie's stoppage-time double earns victory for Hull City against second-placed ブライトン in the Premier League.",
-      "category": "試合",
-      "is_new": true,
-      "id": "2026-11-22-ck62pzzezqz2o-at-medium-rss-at-campaign-"
-    }
-  ]
+  "article_count": 0,
+  "articles": []
 }
